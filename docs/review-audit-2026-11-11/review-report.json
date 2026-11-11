@@ -1,0 +1,279 @@
+{
+  "schema_version": "1.0",
+  "audit": {
+    "project_label": "Chan",
+    "audited_at": "2026-11-11",
+    "skill_version": "1.2.0",
+    "revision": "Git repository has no commits; all project files untracked.",
+    "target": "Chan (SwiftUI iOS/iPadOS)",
+    "configuration": "Release project settings; no matching Release artifact supplied",
+    "scope": "Read-only source, target membership, configuration, resource references, Apple documentation, anonymous HTTP checks of policy links. Old simulator builds are not release artifacts and predate WebView integration.",
+    "rule_verification": "live",
+    "rule_checked_at": "2026-11-11",
+    "summary": "当前源码不建议直接送审：缺少 UserDefaults required-reason 隐私清单；正式身份、签名、提审包和 ASC 状态未获证据。产品价值及 4.3 存在待审核判断的风险。",
+    "rule_sources": [
+      {
+        "title": "App Review",
+        "url": "https://developer.apple.com/distribute/app-review/",
+        "checked_at": "2026-11-11",
+        "status": "reviewed",
+        "scope": "Review preparation and submission context"
+      },
+      {
+        "title": "App Review Guidelines",
+        "url": "https://developer.apple.com/app-store/review/guidelines/",
+        "checked_at": "2026-11-11",
+        "status": "reviewed",
+        "scope": "2.1, 2.3, 4.2, 4.3 and 5.1.1"
+      },
+      {
+        "title": "Required reason API",
+        "url": "https://developer.apple.com/documentation/bundleresources/describing-use-of-required-reason-api",
+        "checked_at": "2026-11-11",
+        "status": "reviewed",
+        "scope": "App code required reason API manifest and upload requirement"
+      },
+      {
+        "title": "Required reason API categories",
+        "url": "https://developer.apple.com/documentation/bundleresources/app-privacy-configuration/nsprivacyaccessedapitypes/nsprivacyaccessedapitype",
+        "checked_at": "2026-11-11",
+        "status": "reviewed",
+        "scope": "UserDefaults and CA92.1"
+      },
+      {
+        "title": "Screenshot specifications",
+        "url": "https://developer.apple.com/help/app-store-connect/reference/app-information/screenshot-specifications/",
+        "checked_at": "2026-11-11",
+        "status": "reviewed",
+        "scope": "Required iPhone and supported iPad screenshots"
+      },
+      {
+        "title": "Upcoming Requirements",
+        "url": "https://developer.apple.com/news/upcoming-requirements/",
+        "checked_at": "2026-11-11",
+        "status": "reviewed",
+        "scope": "Current minimum SDK and target iOS requirements"
+      },
+      {
+        "title": "App Privacy Details",
+        "url": "https://developer.apple.com/app-store/app-privacy-details/",
+        "checked_at": "2026-11-11",
+        "status": "reviewed",
+        "scope": "Privacy links and third-party web practices"
+      },
+      {
+        "title": "Platform version information",
+        "url": "https://developer.apple.com/help/app-store-connect/reference/app-information/platform-version-information/",
+        "checked_at": "2026-11-11",
+        "status": "reviewed",
+        "scope": "Support URL"
+      },
+      {
+        "title": "Complete review information",
+        "url": "https://developer.apple.com/help/app-review/before-submitting-for-review/complete-review/",
+        "checked_at": "2026-11-11",
+        "status": "reviewed",
+        "scope": "Review information"
+      },
+      {
+        "title": "Set an app age rating",
+        "url": "https://developer.apple.com/help/app-store-connect/manage-app-information/set-an-app-age-rating/",
+        "checked_at": "2026-11-11",
+        "status": "reviewed",
+        "scope": "Age-rating questionnaire"
+      }
+    ],
+    "coverage": [
+      {
+        "area": "发布配置",
+        "status": "needs_evidence",
+        "detail": "工程是 iOS 17+、iPhone/iPad、版本 1.0(1)，示例 Bundle ID；没有 ASC、签名、Release Archive 或最终上传包证据。"
+      },
+      {
+        "area": "启动和核心功能",
+        "status": "needs_evidence",
+        "detail": "此前在 iOS 27.0 模拟器检查英文版与短计时通知；协议 WebView 是后续改动，当前源码及 Release 尚未重新编译或运行。"
+      },
+      {
+        "area": "账户",
+        "status": "checked",
+        "detail": "已审查本项目 Swift 源码与入口，未见注册登录；范围限定当前工程。"
+      },
+      {
+        "area": "隐私",
+        "status": "checked",
+        "detail": "沿便签、计时、本地通知与 Google Docs WebView 路径检查。源工程无 PrivacyInfo.xcprivacy；最终包和 ASC 声明未验证。"
+      },
+      {
+        "area": "支付",
+        "status": "not_applicable",
+        "detail": "源码及项目配置范围内未发现购买、订阅或 StoreKit 流程。"
+      },
+      {
+        "area": "内容安全",
+        "status": "not_applicable",
+        "detail": "便签在设备本地，当前代码无共享、公开发布、社交或聊天入口。"
+      },
+      {
+        "area": "Web 与远程行为",
+        "status": "needs_evidence",
+        "detail": "两份 Google Docs 预览链接匿名 HTTP 200 且可查到正文；WKWebView 线上显示、离线重试及最终包未验证。"
+      },
+      {
+        "area": "依赖与平台 API",
+        "status": "needs_evidence",
+        "detail": "项目源码和构建配置未显示三方依赖；最终归档关联 framework 和隐私报告未检查。"
+      },
+      {
+        "area": "产品及版权",
+        "status": "needs_evidence",
+        "detail": "存在自制图片和三个简单工具；截图版权、开发者账号其他产品及 4.2/4.3 审核判断未核实。"
+      },
+      {
+        "area": "提交材料",
+        "status": "needs_evidence",
+        "detail": "没有 ASC 配置、隐私问卷、Support URL、审核截图、设备验证或上传版本的证据。"
+      },
+      {
+        "area": "二进制逆向",
+        "status": "needs_evidence",
+        "detail": "无可确认匹配当前代码的 Release IPA/Archive/Mach-O；旧模拟器 Debug 包不代表拟提交产物，未调用 REA/Hopper。"
+      }
+    ]
+  },
+  "findings": [
+    {
+      "id": "AR-001",
+      "title": "UserDefaults required-reason 隐私清单缺失",
+      "area": "隐私及上传",
+      "severity": "P1",
+      "status": "confirmed",
+      "confidence": "high",
+      "release_path": "HomeView → FocusTimer.standard defaults 保存计时；NotesView @AppStorage 保存便签。两个 Swift 文件列入应用 target。",
+      "trigger": "以当前源工程生成、上传没有额外注入隐私清单的应用包。",
+      "impact": "Apple 要求在应用的隐私清单中声明覆盖 API 的使用理由；缺失声明的包将不能被 App Store Connect 接受。",
+      "evidence": [
+        {
+          "kind": "code",
+          "location": "Chan/FocusView.swift",
+          "line": 13,
+          "detail": "UserDefaults.standard 与保存恢复计时状态。"
+        },
+        {
+          "kind": "code",
+          "location": "Chan/NotesView.swift",
+          "line": 4,
+          "detail": "AppStorage 持久化便签。"
+        },
+        {
+          "kind": "search_scope",
+          "location": "Chan.xcodeproj/project.pbxproj",
+          "line": 116,
+          "detail": "主目标资源及项目文件盘点未发现 PrivacyInfo.xcprivacy；最终 Release 包或构建注入未知。"
+        }
+      ],
+      "rules": [
+        {
+          "section": "Required reason API / UserDefaults",
+          "url": "https://developer.apple.com/documentation/bundleresources/describing-use-of-required-reason-api",
+          "checked_at": "2026-11-11",
+          "applicability": "应用代码使用 UserDefaults 须在自身隐私清单声明适用理由；CA92.1 对仅供自身访问的数据是候选。"
+        },
+        {
+          "section": "UserDefaults CA92.1",
+          "url": "https://developer.apple.com/documentation/bundleresources/app-privacy-configuration/nsprivacyaccessedapitypes/nsprivacyaccessedapitype",
+          "checked_at": "2026-11-11",
+          "applicability": "对应应用私有默认值读写，须结合最终构建用途核对。"
+        }
+      ],
+      "remediation": [
+        "为应用 target 添加 PrivacyInfo.xcprivacy，按真实用途声明 NSPrivacyAccessedAPICategoryUserDefaults 和适用理由；检查其他构建引入的 required-reason API。",
+        "确认该文件在正式归档主 bundle 中。"
+      ],
+      "validation": [
+        "Archive 后查看 App Privacy Report 与打包后的隐私清单；完成一次 App Store Connect 上传验证。"
+      ],
+      "owner": "iOS / 发布",
+      "effort": "S",
+      "uncertainty": [
+        "如果外部构建系统注入清单，必须以拟提交包核对；没有该证据。"
+      ]
+    },
+    {
+      "id": "AR-002",
+      "title": "工具组合的独特性和实用价值存在 4.2/4.3 审核风险",
+      "area": "产品价值",
+      "severity": "P1",
+      "status": "needs_verification",
+      "confidence": "medium",
+      "release_path": "HomeView 暴露计时、单位换算、单条便签三个主要工具。",
+      "trigger": "Apple 认为该组合与现有产品区别不足或实用价值不够。",
+      "impact": "可能依据 4.2 或 4.3 拒审；不是已确认违规，也不能由代码判断审核结果。",
+      "evidence": [
+        {
+          "kind": "code",
+          "location": "Chan/HomeView.swift",
+          "line": 3,
+          "detail": "核心工具枚举为 focus、convert、notes；WebView 为附加协议。"
+        }
+      ],
+      "rules": [
+        {
+          "section": "4.2 Minimum Functionality / 4.3 Spam",
+          "url": "https://developer.apple.com/app-store/review/guidelines/",
+          "checked_at": "2026-11-11",
+          "applicability": "Apple 要求足够的实用价值，并指出简单计时器等饱和类别需要有显著不同或改进的体验。"
+        }
+      ],
+      "remediation": [
+        "以产品自身真实使用场景检查这三个工具是否形成有价值且差异化的体验；真实反映在功能和商店介绍中。",
+        "不要仅靠添加装饰、虚构能力或堆砌无关功能规避审核。"
+      ],
+      "validation": [
+        "通过目标用户流程、竞品差异和审核截图核对；Apple 最终裁量不可预先保证。"
+      ],
+      "owner": "产品",
+      "effort": "M，取决于产品范围",
+      "uncertainty": [
+        "工具箱不等同于仅有简单计时器；最终是否满足 4.2/4.3 须由 Apple 判断。"
+      ]
+    }
+  ],
+  "validation_gaps": [
+    {
+      "id": "GAP-001",
+      "priority": "P1",
+      "question": "正式 Bundle ID、团队签名、ASC 记录与可上传构建是否已就绪？",
+      "needed_evidence": "项目示例值替换或证明受控构建覆盖；与 ASC App ID 一致的 Release Archive 与上传处理状态。",
+      "owner": "发布"
+    },
+    {
+      "id": "GAP-002",
+      "priority": "P1",
+      "question": "最新协议 WebView 代码是否能在最终 Release 包中构建、打开并返回，离线时能重试？",
+      "needed_evidence": "对与上传包一致的构建在设备检查两个协议、返回、弱网与离线；无登录公开访问。",
+      "owner": "iOS / QA"
+    },
+    {
+      "id": "GAP-003",
+      "priority": "P1",
+      "question": "ASC 隐私、可公开访问的隐私政策、Support URL、年龄分级和审核资料是否已经填写？",
+      "needed_evidence": "ASC 相应页面和无登录访问验证；隐私问卷包括 Google Docs 页面请求及实际第三方处理。",
+      "owner": "App Store Connect"
+    },
+    {
+      "id": "GAP-004",
+      "priority": "P2",
+      "question": "目标设备截图和 iPad 实际体验是否准备完毕？",
+      "needed_evidence": "当前构建真实截图，支持 iPad 则提供符合要求的 13 英寸 iPad 截图；核对实际设置。",
+      "owner": "产品 / 发布"
+    },
+    {
+      "id": "GAP-005",
+      "priority": "P2",
+      "question": "Duo 开合、分屏和真机长文本是否可用？",
+      "needed_evidence": "在匹配构建上进行 Duo 姿态与真机验证。",
+      "owner": "iOS / QA"
+    }
+  ]
+}
