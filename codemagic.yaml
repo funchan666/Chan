@@ -1,0 +1,63 @@
+workflows:
+  chan-ios-app-store:
+    name: Chan iOS App Store
+    max_build_duration: 120
+    instance_type: mac_mini_m2
+
+    integrations:
+      app_store_connect: Chan
+
+    environment:
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.chantools.simplekit
+      vars:
+        BUNDLE_ID: "com.chantools.simplekit"
+        XCODE_PROJECT: "Chan.xcodeproj"
+        XCODE_SCHEME: "Chan"
+        APP_STORE_APPLE_ID: "6833379783"
+      xcode: latest
+
+    scripts:
+      - name: Verify iOS project configuration
+        script: |
+          set -e
+          test -d "$CM_BUILD_DIR/$XCODE_PROJECT"
+          test -f "$CM_BUILD_DIR/$XCODE_PROJECT/xcshareddata/xcschemes/$XCODE_SCHEME.xcscheme"
+          grep -Fq "PRODUCT_BUNDLE_IDENTIFIER = $BUNDLE_ID;" \
+            "$CM_BUILD_DIR/$XCODE_PROJECT/project.pbxproj"
+
+      - name: Set up App Store signing
+        script: |
+          set -e
+          cd "$CM_BUILD_DIR"
+          xcode-project use-profiles
+
+      - name: Build signed IPA
+        script: |
+          set -e
+          cd "$CM_BUILD_DIR"
+          LATEST_BUILD_NUMBER="$(app-store-connect get-latest-build-number "$APP_STORE_APPLE_ID" --all-versions)"
+          if [ -z "$LATEST_BUILD_NUMBER" ]; then
+            LATEST_BUILD_NUMBER=0
+          fi
+          case "$LATEST_BUILD_NUMBER" in
+            *[!0-9]*) echo "Unexpected App Store build number: $LATEST_BUILD_NUMBER" >&2; exit 1 ;;
+          esac
+          NEXT_BUILD_NUMBER=$((LATEST_BUILD_NUMBER + 1))
+          echo "Using build number: $NEXT_BUILD_NUMBER"
+          xcode-project build-ipa \
+            --project "$CM_BUILD_DIR/$XCODE_PROJECT" \
+            --scheme "$XCODE_SCHEME" \
+            --archive-xcargs "CURRENT_PROJECT_VERSION=$NEXT_BUILD_NUMBER"
+
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
+
+    publishing:
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: false
+        submit_to_app_store: false
